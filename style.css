@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&family=Raleway:wght@200&display=swap");
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+header {
+  width: 100vw;
+  height: 40rem;
+}
+header .title {
+  position: absolute;
+  top: 20rem;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  background-color: rgba(0, 0, 0, 0.3137254902);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+  padding: 2rem 5rem;
+  border: 0.5rem solid white;
+}
+header .title * {
+  line-height: 1;
+}
+header .title span {
+  text-transform: uppercase;
+  font-size: 2.6em;
+  text-align: center;
+}
+header .title h1 {
+  margin: 0;
+  font-size: 7.4em;
+  width: 100%;
+  text-align: center;
+}
+
+.fluid {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -1;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  color: inherit;
+  outline: none;
+  color: white;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+button:hover {
+  color: #343399;
+  background-color: white;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  background-color: #343399;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100vw - 10rem);
+  padding: 0 5rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1254901961);
+}
+nav ul {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  list-style-type: none;
+}
+nav ul li {
+  position: relative;
+}
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 0.75rem 1rem;
+  height: 100%;
+}
+nav ul li i {
+  margin-left: 0.5rem;
+}
+nav ul li ul.dropdown {
+  display: none;
+}
+nav ul li ul.dropdown a {
+  margin: 2px;
+}
+nav ul li:hover a {
+  background-color: white;
+  color: #343399;
+}
+nav ul li:hover ul.dropdown {
+  overflow: visible;
+  position: absolute;
+  background-color: #343399;
+  top: 100%;
+  left: 0;
+  height: -moz-max-content;
+  height: max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: unset;
+}
+nav ul li:hover ul.dropdown a:not(:hover) {
+  background-color: #343399;
+  color: white;
+}
+nav ul li.active {
+  background-color: #4140bf;
+}
+nav .search {
+  display: flex;
+  place-items: center;
+  position: relative;
+}
+nav .search .search-input {
+  padding: 0.5rem;
+  height: 100%;
+  box-sizing: border-box;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+nav .search button {
+  margin: 2px;
+  height: 100%;
+  aspect-ratio: 1/1;
+  width: -moz-max-content;
+  width: max-content;
+}
+nav .search button i {
+  width: -moz-min-content;
+  width: min-content;
+  height: 0;
+}
+
+main {
+  margin: 3rem auto 0 auto;
+}
+main section {
+  padding: 5rem 10rem;
+}
+main h2 {
+  font-family: "Raleway", sans-serif;
+  font-size: 2.5rem;
+  color: #343399;
+  margin-bottom: 1rem;
+}
+main .split {
+  display: flex;
+  gap: 1rem;
+}
+main button {
+  background-color: #ff7d32;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid #ff7d32;
+}
+main button:hover {
+  color: #ff7d32;
+}
+main #news {
+  background-color: #343399;
+  overflow-x: scroll;
+}
+main #news h2 {
+  color: white;
+  margin: auto;
+}
+main #news #news-cards {
+  display: flex;
+  gap: 4rem;
+  width: -moz-max-content;
+  width: max-content;
+  padding-right: 10rem;
+}
+main #news #news-cards .news-card {
+  background-color: white;
+  width: 25rem;
+  height: 35rem;
+  display: grid;
+  grid-template-rows: 15rem 1fr;
+  transition: grid-template-rows 1s ease-in-out;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1254901961);
+  overflow: hidden;
+  position: relative;
+}
+main #news #news-cards .news-card .content {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: start;
+}
+main #news #news-cards .news-card .content * {
+  margin: 0;
+}
+main #news #news-cards .news-card .content p {
+  height: -moz-max-content;
+  height: max-content;
+  overflow: scroll;
+  transition: height 1s ease-in-out;
+}
+main #news #news-cards .news-card .content .white {
+  padding: 1rem;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+main #news #news-cards .news-card .content .white button {
+  width: -moz-max-content;
+  width: max-content;
+}
+main #news #news-cards .news-card .content .news-date {
+  color: grey;
+}
+main #news #news-cards .news-card:hover {
+  grid-template-rows: 5rem 1fr;
+}
+
+#overscroll {
+  height: 180vh;
+}/*# sourceMappingURL=style.css.map */
