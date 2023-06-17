@@ -74,6 +74,7 @@ nav {
   width: calc(100vw - 10rem);
   padding: 0 5rem;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1254901961);
+  z-index: 1;
 }
 nav ul {
   display: flex;
@@ -154,11 +155,13 @@ nav .search button i {
   height: 0;
 }
 
-main {
-  margin: 3rem auto 0 auto;
+main p {
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.5843137255);
+  font-size: large;
 }
 main section {
-  padding: 5rem 10rem;
+  padding: 8rem 10rem;
 }
 main h2 {
   font-family: "Raleway", sans-serif;
@@ -222,6 +225,9 @@ main #news #news-cards .news-card .content p {
   height: 8rem;
   transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: scroll;
+  line-height: 1.2;
+  color: black;
+  font-size: medium;
 }
 main #news #news-cards .news-card .content .news-date {
   color: grey;
@@ -229,6 +235,19 @@ main #news #news-cards .news-card .content .news-date {
 }
 main #news #news-cards .news-card:hover p {
   height: 22rem;
+}
+main #sporthal {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background-color: #eee;
+}
+main #sporthal .content {
+  padding: 8rem 0 8rem 10rem;
+}
+main #info {
+  background-color: #23303d;
 }
 
 #overscroll {
