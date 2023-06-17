@@ -193,10 +193,15 @@ main #news #news-cards {
   background-color: #343399;
   padding: 5rem 10rem;
 }
-main #news #news-cards h2 {
-  color: white;
+main #news #news-cards .h2-containter {
   margin: auto;
+}
+main #news #news-cards .h2-containter h2 {
+  color: white;
   padding-right: 2rem;
+}
+main #news #news-cards .h2-containter p {
+  color: rgba(255, 255, 255, 0.8);
 }
 main #news #news-cards .news-card {
   width: 25rem;

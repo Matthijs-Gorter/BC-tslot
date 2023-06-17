@@ -209,10 +209,15 @@ main {
 			background-color: $primary;
 			padding: 5rem 10rem;
 
-			h2 {
-				color: white;
+			.h2-containter {
 				margin: auto;
-				padding-right: 2rem;
+				h2 {
+					color: white;
+					padding-right: 2rem;
+				}
+				p {
+					color: rgba(255, 255, 255, 0.8);
+				}
 			}
 			.news-card {
 				width: 25rem;
@@ -265,7 +270,6 @@ main {
 		background-color: #eee;
 		.content {
 			padding: 8rem 0 8rem 10rem;
-
 		}
 	}
 	#info {
