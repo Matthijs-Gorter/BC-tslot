@@ -179,64 +179,56 @@ main button:hover {
   color: #ff7d32;
 }
 main #news {
-  background-color: #343399;
+  padding: 0;
   overflow-x: scroll;
-}
-main #news h2 {
-  color: white;
-  margin: auto;
 }
 main #news #news-cards {
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
   width: -moz-max-content;
   width: max-content;
-  padding-right: 10rem;
+  background-color: #343399;
+  padding: 5rem 10rem;
+}
+main #news #news-cards h2 {
+  color: white;
+  margin: auto;
+  padding-right: 2rem;
 }
 main #news #news-cards .news-card {
-  background-color: white;
   width: 25rem;
   height: 35rem;
+  background-color: white;
   display: grid;
-  grid-template-rows: 15rem 1fr;
-  transition: grid-template-rows 1s ease-in-out;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1254901961);
+  grid-template-rows: 1fr min-content;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+main #news #news-cards .news-card .detail {
+  min-height: 0;
+}
+main #news #news-cards .news-card .content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   position: relative;
 }
-main #news #news-cards .news-card .content {
-  display: flex;
-  padding: 1rem;
-  gap: 1rem;
-  flex-direction: column;
-  align-items: start;
-}
-main #news #news-cards .news-card .content * {
-  margin: 0;
+main #news #news-cards .news-card .content h3 {
+  margin: 0.5rem 0;
 }
 main #news #news-cards .news-card .content p {
-  height: -moz-max-content;
-  height: max-content;
+  margin: 0.5rem 0;
+  height: 8rem;
+  transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: scroll;
-  transition: height 1s ease-in-out;
-}
-main #news #news-cards .news-card .content .white {
-  padding: 1rem;
-  background-color: white;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-main #news #news-cards .news-card .content .white button {
-  width: -moz-max-content;
-  width: max-content;
 }
 main #news #news-cards .news-card .content .news-date {
   color: grey;
+  font-size: small;
 }
-main #news #news-cards .news-card:hover {
-  grid-template-rows: 5rem 1fr;
+main #news #news-cards .news-card:hover p {
+  height: 22rem;
 }
 
 #overscroll {
