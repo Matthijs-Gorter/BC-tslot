@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/static/style.css">
+	<script src="https://kit.fontawesome.com/53f2769d4a.js" crossorigin="anonymous"></script>
+	<title>BC Slot - login</title>
+</head>
+
+<body style="height: 100vh;" id="login">
+	<nav>
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li>
+				<a href="#0">Clubinfo<i class="fa-solid fa-chevron-down"></i></a>
+				<ul class="dropdown">
+					<li><a href="#0">Over BC't slot</a></li>
+					<li><a href="#0">Speeltijden</a></li>
+					<li><a href="#0">Bestuur en Commissies</a></li>
+					<li><a href="#0">Sporthal</a></li>
+					<li><a href="#0">Statuten</a></li>
+					<li><a href="#0">Sponsor Kliks</a></li>
+				</ul>
+			</li>
+			<li><a href="#0">De Sport<i class="fa-solid fa-chevron-down"></i></a>
+				<ul class="dropdown">
+					<li><a href="#0">Spelregels</a></li>
+					<li><a href="#0">Materialen</a></li>
+					<li><a href="#0">Blessurepreventie</a></li>
+					<li><a href="#0">Historie</a></li>
+				</ul>
+			</li>
+			<li><a href="#0">Spelen<i class="fa-solid fa-chevron-down"></i></a>
+				<ul class="dropdown">
+					<li><a href="#0">Speeltijden</a></li>
+					<li><a href="#0">Traning en Vrijsplen</a></li>
+					<li><a href="#0">Competitie</a></li>
+				</ul>
+			</li>
+			<li><a href="#0">Lidmaatschap</a></li>
+			<li><a href="#0">Contact</a></li>
+			<li><a href="#0">Kalender</a></li>
+		</ul>
+		<form class="search">
+			<input type="text" class="search-input" placeholder="Zoeken...">
+			<button title="zoeken" type="submit" class="search-button"><i class="fa fa-search" aria-hidden="true"></i>
+			</button>
+			<button title="geavanceerd zoeken" type="submit" class="search-button"><i class="fa fa-gear"></i>
+			</button>
+		</form>
+	</nav>
+	<main>
+		<section>
+			<h2>Login</h2>
+			{% if error %}
+			<p style="color: red;">{{ error }}</p>
+			{% endif %}
+			<form method="POST" action="{{ url_for('login') }}">
+				<div>
+					<label for="username">Username:</label>
+					<input type="text" id="username" name="username" required>
+				</div>
+				<div>
+					<label for="password">Password:</label>
+					<input type="password" id="password" name="password" required>
+				</div>
+				<div>
+					<input type="submit" value="Login" class="btn">
+				</div>
+			</form>
+		</section>
+	</main>
+</body>
+
+</html>

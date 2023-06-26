@@ -47,7 +47,8 @@ header .title h1 {
   z-index: -1;
 }
 
-button {
+button,
+.btn {
   border: none;
   background: none;
   padding: 0;
@@ -55,11 +56,14 @@ button {
   outline: none;
   color: white;
   font-size: inherit;
+  text-decoration: none;
   font-family: inherit;
   line-height: inherit;
+  display: block;
 }
 
-button:hover {
+button:hover,
+.btn {
   color: #343399;
   background-color: white;
 }
@@ -94,6 +98,7 @@ nav ul li a {
   color: white;
   text-decoration: none;
   display: block;
+  font-size: small;
   padding: 0.75rem 1rem;
   height: 100%;
 }
@@ -138,7 +143,7 @@ nav .search .search-input {
   padding: 0.5rem;
   height: 100%;
   box-sizing: border-box;
-  font-size: inherit;
+  font-size: small;
   font-family: inherit;
   line-height: inherit;
 }
@@ -152,6 +157,7 @@ nav .search button {
 nav .search button i {
   width: -moz-min-content;
   width: min-content;
+  font-size: small;
   height: 0;
 }
 
@@ -161,31 +167,53 @@ main p {
   font-size: large;
 }
 main section {
-  padding: 8rem 10rem;
+  padding: 7rem 10rem;
 }
-main h2 {
+main section h2 {
   font-family: "Raleway", sans-serif;
   font-size: 2.5rem;
   color: #343399;
   margin-bottom: 1rem;
+  margin-top: 0;
+}
+main section h3 {
+  margin-top: 0;
 }
 main .split {
   display: flex;
   gap: 1rem;
 }
+main .btn,
 main button {
   background-color: #ff7d32;
   padding: 0.5rem 1.25rem;
   border: 2px solid #ff7d32;
+  border-radius: 0.25rem;
+  width: -moz-max-content;
+  width: max-content;
+  color: white;
 }
+main .btn:hover,
 main button:hover {
   color: #ff7d32;
+  background-color: white;
+}
+main #logout {
+  position: fixed;
+  top: 4rem;
+  right: 2rem;
+  background-color: red;
+  border: 2px solid red;
+}
+main #logout:hover {
+  color: red;
+  background-color: white;
 }
 main #news {
   padding: 0;
   overflow-x: scroll;
 }
-main #news #news-cards {
+main #news-cards {
   display: flex;
   gap: 2rem;
   width: -moz-max-content;
@@ -193,17 +221,17 @@ main #news #news-cards {
   background-color: #343399;
   padding: 5rem 10rem;
 }
-main #news #news-cards .h2-containter {
+main .h2-containter {
   margin: auto;
 }
-main #news #news-cards .h2-containter h2 {
+main .h2-containter h2 {
   color: white;
   padding-right: 2rem;
 }
-main #news #news-cards .h2-containter p {
+main .h2-containter p {
   color: rgba(255, 255, 255, 0.8);
 }
-main #news #news-cards .news-card {
+main .news-card {
   width: 25rem;
   height: 35rem;
   background-color: white;
@@ -212,20 +240,21 @@ main #news #news-cards .news-card {
   overflow: hidden;
   border-radius: 0.5rem;
 }
-main #news #news-cards .news-card .detail {
+main .news-card .detail {
   min-height: 0;
+  background-color: rgba(0, 0, 0, 0.1254901961);
 }
-main #news #news-cards .news-card .content {
+main .news-card .content {
   padding: 1rem;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   position: relative;
 }
-main #news #news-cards .news-card .content h3 {
+main .news-card .content h3 {
   margin: 0.5rem 0;
 }
-main #news #news-cards .news-card .content p {
+main .news-card .content p {
   margin: 0.5rem 0;
   height: 8rem;
   transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -234,11 +263,11 @@ main #news #news-cards .news-card .content p {
   color: black;
   font-size: medium;
 }
-main #news #news-cards .news-card .content .news-date {
+main .news-card .content .news-date {
   color: grey;
   font-size: small;
 }
-main #news #news-cards .news-card:hover p {
+main .news-card:hover p {
   height: 22rem;
 }
 main #sporthal {
@@ -254,7 +283,79 @@ main #sporthal .content {
 main #info {
   background-color: #23303d;
 }
-
-#overscroll {
+main #overscroll {
   height: 180vh;
+}
+main form {
+  height: -moz-max-content;
+  height: max-content;
+}
+main form label {
+  background-color: rgb(255, 255, 255);
+  margin-left: 1rem;
+  z-index: 5rem;
+  position: relative;
+  color: #343399;
+}
+main form input,
+main form textarea {
+  display: block;
+  width: 100%;
+  min-width: 20rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: none;
+  border: 0.5px solid #343399;
+  min-height: 1.5rem;
+  padding: 0.5rem;
+  font: inherit;
+  font-size: inherit;
+  box-sizing: border-box;
+}
+
+#user {
+  color: white;
+  padding-left: 1rem;
+  font-size: small;
+}
+
+#login {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: min-content 1fr;
+}
+#login main {
+  display: grid;
+  place-items: center;
+  margin: 0;
+}
+#login h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+#login .btn {
+  margin-top: 3rem;
+  margin: 0 auto;
+}
+
+#admin {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  gap: 2rem;
+}
+#admin form input,
+#admin form textarea {
+  margin-bottom: -1rem;
+}
+#admin form .btn {
+  width: 100%;
+}
+#admin .card_detail {
+  background-color: #343399;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+#admin .card_detail #news-cards {
+  padding: 2rem;
 }/*# sourceMappingURL=style.css.map */

@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/style.css">
+	<link rel="stylesheet" href="/static/style.css">
 	<script src="https://kit.fontawesome.com/53f2769d4a.js" crossorigin="anonymous"></script>
 	<title>BC 't slot</title>
 </head>
@@ -19,6 +19,7 @@
 			<span>Badminton Club</span>
 			<h1>'t SLOT</h1>
 		</div>
+
 	</header>
 	<nav>
 		<ul>
@@ -52,6 +53,9 @@
 			<li><a href="#0">Lidmaatschap</a></li>
 			<li><a href="#0">Contact</a></li>
 			<li><a href="#0">Kalender</a></li>
+			{% if logged_in %}
+			<li><a href="/admin">Admin</a></li>
+			{% endif%}
 		</ul>
 		<form class="search">
 			<input type="text" class="search-input" placeholder="Zoeken...">
@@ -90,6 +94,24 @@
 					<h2>Nieuws</h2>
 					<p>scroll naar rechts <i class="fa-solid fa-arrow-right"></i></p>
 				</div>
+				{% for article in articles %}
+				<div class="news-card">
+					<div class="detail">
+						<img class="news-image fluid" src="{{ article[4] }}" alt="afbeeling kon niet laden">
+					</div>
+					<div class="content">
+						<span class="news-date">{{ article[2] }}</span>
+						<h3>{{ article[1] }}</h3>
+						<p>{{ article[3] }}</p>
+						{% if article[5] %}
+						<div class="button-container">
+							<a href="{{ article[6] }}" class="btn"§>{{ article[5] }}</a>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+
+				{% endfor %}
 				<!-- zomerbadminton -->
 				<div class="news-card">
 					<div class="detail">
@@ -118,7 +140,7 @@
 							betalen.
 						</p>
 						<div class="button-container">
-							<button>Meld je aan</button>
+							<button class="btn">Meld je aan</button>
 						</div>
 					</div>
 				</div>
@@ -168,7 +190,7 @@
 							voor alle info.
 						</p>
 						<div class="button-container">
-							<button>Schrijf je in</button>
+							<button class="btn">Schrijf je in</button>
 						</div>
 					</div>
 
@@ -222,7 +244,7 @@
 
 						</p>
 						<div class="button-container">
-							<button>Schrijf je in</button>
+							<button class="btn">Schrijf je in</button>
 						</div>
 					</div>
 
@@ -273,7 +295,6 @@
 
 
 	</main>
-	<div id="overscroll"></div>
 </body>
 
 </html>

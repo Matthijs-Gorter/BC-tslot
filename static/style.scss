@@ -52,7 +52,8 @@ header {
 	object-fit: cover;
 	z-index: -1;
 }
-button {
+button,
+.btn {
 	border: none;
 	background: none;
 	padding: 0;
@@ -60,11 +61,14 @@ button {
 	outline: none;
 	color: white;
 	font-size: inherit;
+	text-decoration: none;
 	font-family: inherit;
 	line-height: inherit;
+	display: block;
 }
 
-button:hover {
+button:hover,
+.btn {
 	color: $primary;
 	background-color: white;
 }
@@ -99,6 +103,7 @@ nav {
 				color: white;
 				text-decoration: none;
 				display: block;
+				font-size: small;
 				padding: 0.75rem 1rem;
 				height: 100%;
 			}
@@ -154,7 +159,7 @@ nav {
 			padding: 0.5rem;
 			height: 100%;
 			box-sizing: border-box;
-			font-size: inherit;
+			font-size: small;
 			font-family: inherit;
 			line-height: inherit;
 		}
@@ -166,6 +171,7 @@ nav {
 			width: max-content;
 			i {
 				width: min-content;
+				font-size: small;
 				height: 0;
 			}
 		}
@@ -179,88 +185,111 @@ main {
 		font-size: large;
 	}
 	section {
-		padding: 8rem 10rem;
+		padding: 7rem 10rem;
+		h2 {
+			font-family: $font-title;
+			font-size: 2.5rem;
+			color: $primary;
+			margin-bottom: 1rem;
+			margin-top: 0;
+		}
+		h3 {
+			margin-top: 0;
+		}
 	}
-	h2 {
-		font-family: $font-title;
-		font-size: 2.5rem;
-		color: $primary;
-		margin-bottom: 1rem;
-	}
+
 	.split {
 		display: flex;
 		gap: 1rem;
 	}
+	.btn,
 	button {
 		background-color: $secondairy;
 		padding: 0.5rem 1.25rem;
 		border: 2px solid $secondairy;
+		border-radius: 0.25rem;
+		width: max-content;
+		color: white;
 	}
+	.btn:hover,
 	button:hover {
 		color: #ff7d32;
+		background-color: white;
+	}
+	#logout {
+		position: fixed;
+		top: 4rem;
+		right: 2rem;
+		background-color: red;
+		border: 2px solid red;
+	}
+	#logout:hover {
+		color: red;
+		background-color: white;
 	}
 	#news {
 		padding: 0;
 		overflow-x: scroll;
-		#news-cards {
+	}
+	#news-cards {
+		display: flex;
+		gap: 2rem;
+		width: max-content;
+		background-color: $primary;
+		padding: 5rem 10rem;
+	}
+	.h2-containter {
+		margin: auto;
+		h2 {
+			color: white;
+			padding-right: 2rem;
+		}
+		p {
+			color: rgba(255, 255, 255, 0.8);
+		}
+	}
+	.news-card {
+		width: 25rem;
+		height: 35rem;
+		background-color: white;
+		display: grid;
+		grid-template-rows: 1fr min-content;
+		overflow: hidden;
+		border-radius: 0.5rem;
+		.detail {
+			min-height: 0;
+			background-color: #00000020;
+		}
+		.content {
+			padding: 1rem;
 			display: flex;
-			gap: 2rem;
-			width: max-content;
-			background-color: $primary;
-			padding: 5rem 10rem;
-
-			.h2-containter {
-				margin: auto;
-				h2 {
-					color: white;
-					padding-right: 2rem;
-				}
-				p {
-					color: rgba(255, 255, 255, 0.8);
-				}
+			flex-direction: column;
+			overflow: hidden;
+			position: relative;
+			h3 {
+				margin: 0.5rem 0;
 			}
-			.news-card {
-				width: 25rem;
-				height: 35rem;
-				background-color: white;
-				display: grid;
-				grid-template-rows: 1fr min-content;
-				overflow: hidden;
-				border-radius: 0.5rem;
-				.detail {
-					min-height: 0;
-				}
-				.content {
-					padding: 1rem;
-					display: flex;
-					flex-direction: column;
-					overflow: hidden;
-					position: relative;
-					h3 {
-						margin: 0.5rem 0;
-					}
-					p {
-						margin: 0.5rem 0;
-						height: 8rem;
-						transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-						overflow: scroll;
-						line-height: 1.2;
-						color: black;
-						font-size: medium;
-					}
-					.news-date {
-						color: grey;
-						font-size: small;
-					}
-				}
+			p {
+				margin: 0.5rem 0;
+				height: 8rem;
+				transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+				overflow: scroll;
+				line-height: 1.2;
+				color: black;
+				font-size: medium;
 			}
-			.news-card:hover {
-				p {
-					height: 22rem;
-				}
+			.news-date {
+				color: grey;
+				font-size: small;
 			}
 		}
 	}
+	.news-card:hover {
+		p {
+			height: 22rem;
+		}
+	}
+
 	#sporthal {
 		padding: 0;
 		display: grid;
@@ -275,8 +304,85 @@ main {
 	#info {
 		background-color: #23303d;
 	}
+
+	#overscroll {
+		height: 180vh;
+	}
+
+	form {
+		label {
+			background-color: rgb(255, 255, 255);
+			margin-left: 1rem;
+			z-index: 5rem;
+			position: relative;
+			color: $primary;
+		}
+		input,
+		textarea {
+			display: block;
+			width: 100%;
+			min-width: 20rem;
+			margin-top: -0.5rem;
+			margin-bottom: 1rem;
+			border-radius: 0.25rem;
+			box-shadow: none;
+			border: 0.5px solid $primary;
+			min-height: 1.5rem;
+			padding: 0.5rem;
+			font: inherit;
+			font-size: inherit;
+			box-sizing: border-box;
+		}
+
+		height: max-content;
+	}
 }
 
-#overscroll {
-	height: 180vh;
+#user {
+	color: white;
+	padding-left: 1rem;
+	font-size: small;
+}
+
+#login {
+	display: grid;
+	height: 100vh;
+	grid-template-rows: min-content 1fr;
+	main {
+		display: grid;
+		place-items: center;
+		margin: 0;
+	}
+	h2 {
+		text-align: center;
+		margin-bottom: 3rem;
+	}
+	.btn {
+		margin-top: 3rem;
+		margin: 0 auto;
+	}
+}
+
+#admin {
+	display: grid;
+	grid-template-columns: 1fr min-content;
+	gap: 2rem;
+	form {
+		input,
+		textarea {
+			margin-bottom: -1rem;
+		}
+
+		.btn {
+			width: 100%;
+		}
+	}
+	.card_detail {
+		background-color:$primary;
+		border-radius: 1rem;
+		overflow: hidden;
+		#news-cards {
+			padding: 2rem;
+		}
+	}
 }

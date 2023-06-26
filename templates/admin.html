@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Pagina</title>
+    <script src="https://kit.fontawesome.com/53f2769d4a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li>
+                <a href="#0">Clubinfo<i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="#0">Over BC't slot</a></li>
+                    <li><a href="#0">Speeltijden</a></li>
+                    <li><a href="#0">Bestuur en Commissies</a></li>
+                    <li><a href="#0">Sporthal</a></li>
+                    <li><a href="#0">Statuten</a></li>
+                    <li><a href="#0">Sponsor Kliks</a></li>
+                </ul>
+            </li>
+            <li><a href="#0">De Sport<i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="#0">Spelregels</a></li>
+                    <li><a href="#0">Materialen</a></li>
+                    <li><a href="#0">Blessurepreventie</a></li>
+                    <li><a href="#0">Historie</a></li>
+                </ul>
+            </li>
+            <li><a href="#0">Spelen<i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="#0">Speeltijden</a></li>
+                    <li><a href="#0">Traning en Vrijsplen</a></li>
+                    <li><a href="#0">Competitie</a></li>
+                </ul>
+            </li>
+            <li><a href="#0">Lidmaatschap</a></li>
+            <li><a href="#0">Contact</a></li>
+            <li><a href="#0">Kalender</a></li>
+            <li class="active"><a href="/admin">Admin</a></li>
+        </ul>
+        <form class="search">
+            <input type="text" class="search-input" placeholder="Zoeken...">
+            <button title="zoeken" type="submit" class="search-button"><i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+            <button title="geavanceerd zoeken" type="submit" class="search-button"><i class="fa fa-gear"></i>
+            </button>
+            <span id="user">{{ username }}</span>
+        </form>
+    </nav>
+    <main>
+        <section id="admin">
+
+            <div class="content">
+                <h2>Add a News Article</h2>
+                <form method="POST" action="{{ url_for('add_article') }}">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required><br><br>
+
+                    <label for="date">Date</label>
+                    <input type="text" id="date" name="date" required><br><br>
+
+                    <label for="content">Content</label>
+                    <textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
+
+                    <label for="image_url">Image URL</label>
+                    <input type="text" id="image_url" name="image_url"><br><br>
+
+                    <label for="call_to_action_button">Button naam (optioneel)</label>
+                    <input type="text" id="call_to_action_button" name="call_to_action_button"><br><br>
+
+                    <label for="call_to_action_link">Button link (optioneel)</label>
+                    <input type="text" id="call_to_action_link" name="call_to_action_link"><br><br>
+
+                    <input type="submit" value="Add Article" class="btn">
+                </form>
+                <br>
+                <a href="/logout" id="logout" class="btn">Logout</a>
+            </div>
+            <div class="card_detail">
+                <div id="news-cards">
+                    <div class="news-card">
+
+                        <div class="detail">
+                            <img class="news-image fluid" id="image_output" src="#0" alt="">
+
+                        </div>
+                        <div class="content" >
+                            <span id="date_output" class="news-date"></span>
+                            <h3  id="title_output" class="news-title"></h3>
+                            <p id="content_output"></p>
+                            <div class="button-container">
+                                <a id="button_output" href="#0" class="btn" style="display: none;"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    </main>
+    <script>
+        var title = document.getElementById('title');
+        var title_output = document.getElementById('title_output');
+
+        title.addEventListener('input', function () {
+            title_output.textContent = title.value;
+        });
+
+        var date = document.getElementById('date');
+        var date_output = document.getElementById('date_output');
+
+        date.addEventListener('input', function () {
+            date_output.textContent = date.value;
+        });
+        
+        var content = document.getElementById('content');
+        var content_output = document.getElementById('content_output');
+
+        content.addEventListener('input', function () {
+            content_output.textContent = content.value;
+        });
+
+        var button = document.getElementById('call_to_action_button');
+        var button_output = document.getElementById('button_output');
+
+        button.addEventListener('input', function () {
+            if (button.value == "") {
+                button_output.style.display = "none"
+            } else {
+                button_output.style.display = "block"
+            }
+            button_output.innerText = button.value;
+        });
+
+        var button_link = document.getElementById('call_to_action_link');
+
+        button_link.addEventListener('input', function () {
+            button_output.href = button_link.value;
+        });
+
+        var image_url = document.getElementById('image_url')
+        var image_output = document.getElementById('image_output');
+
+
+        image_url.addEventListener('input', function () {
+            image_output.src = image_url.value;
+        });
+    </script>
+</body>
+
+</html>
