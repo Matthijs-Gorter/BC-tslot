@@ -11,6 +11,10 @@ body {
 	font-family: $font-primary;
 }
 
+b, strong {
+	font-weight: 900;
+}
+
 header {
 	width: 100vw;
 	height: 40rem;
@@ -216,17 +220,33 @@ main {
 		color: #ff7d32;
 		background-color: white;
 	}
+	.button-container {
+		display: flex;
+		place-content:space-between;
+	}
+	.btn-danger {
+		background-color: red;
+		border: 2px solid red;
+	}
+	.btn-danger:hover {
+		color: red;
+		background-color: white;
+	}
+	.btn-neutral {
+		background-color: $primary;
+		border: 2px solid $primary;
+	}
+	.btn-neutral:hover {
+		color: $primary;
+		background-color: white;
+	}
+	
 	#logout {
 		position: fixed;
 		top: 4rem;
 		right: 2rem;
-		background-color: red;
-		border: 2px solid red;
 	}
-	#logout:hover {
-		color: red;
-		background-color: white;
-	}
+	
 	#news {
 		padding: 0;
 		overflow-x: scroll;
@@ -317,8 +337,7 @@ main {
 			position: relative;
 			color: $primary;
 		}
-		input,
-		textarea {
+		input, textarea {
 			display: block;
 			width: 100%;
 			min-width: 20rem;
@@ -363,18 +382,33 @@ main {
 	}
 }
 
-#admin {
+#admin, #edit {
 	display: grid;
 	grid-template-columns: 1fr min-content;
 	gap: 2rem;
 	form {
 		input,
 		textarea {
-			margin-bottom: -1rem;
+			margin-bottom: 1rem;
 		}
 
 		.btn {
 			width: 100%;
+			margin-top: 1rem;
+			margin-bottom: 0;
+		}
+		.container {
+			position: relative;
+		}
+		textarea {
+			padding-right: 2rem;
+		}
+		.content-toolbar {
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			top: 1.5rem;
+			right: 1rem;
 		}
 	}
 	.card_detail {

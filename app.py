@@ -1,48 +1,41 @@
-# pyright: reportMissingImports=false
-
 from flask import Flask, render_template, request, redirect, url_for, session
+from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///news.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+
+class NewsArticle(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Text, nullable=False)
+    date = db.Column(db.Text, nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    image_url = db.Column(db.Text)
+    call_to_action_button = db.Column(db.Text)
+    call_to_action_link = db.Column(db.Text)
+    __tablename__ = 'news_articles'
 
 # Define a dictionary of valid credentials for the admin dashboard
 valid_credentials = {
     'admin': 'password123',
-    'matthijs' : '12345678'
+    'matthijs': '12345678'
 }
 
-def initialize_database():
-    conn = sqlite3.connect('news.db')
-    c = conn.cursor()
-
-    c.execute('''CREATE TABLE IF NOT EXISTS news_articles (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    date TEXT NOT NULL,
-    content TEXT NOT NULL,
-    image_url TEXT,
-    call_to_action_button TEXT,
-    call_to_action_link TEXT
-)''')
-
-
-    conn.commit()
-    conn.close()
-
 # Home route - accessible by all users
+
+
 @app.route('/')
 def home():
-    conn = sqlite3.connect('news.db')
-    c = conn.cursor()
-    c.execute('SELECT * FROM news_articles ORDER BY id DESC')
-    articles = c.fetchall()
-    conn.close()
-
-    logged_in = 'logged_in' in session and session['logged_in']
-
-    
-    return render_template('home.html', articles=articles, logged_in=logged_in)
+    articles = NewsArticle.query.order_by(NewsArticle.id.desc()).all()
+    return render_template('home.html', 
+                           articles=articles, 
+                           logged_in='logged_in' in session and session['logged_in'] and 'username' in session, 
+                           username = 'username' in session and session['username'])
 
 
 # Login route - displays login form and processes login requests
@@ -51,59 +44,101 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        
+
         # Check if the provided credentials are valid
         if username in valid_credentials and valid_credentials[username] == password:
             session['logged_in'] = True
             session['username'] = username
-            return redirect(url_for('admin_dashboard'))  # Modified endpoint here
+            # Modified endpoint here
+            return redirect(url_for('admin_dashboard'))
         else:
             return render_template('login.html', error='Invalid credentials')
-    
+
     return render_template('login.html')
 
 # Admin dashboard route - requires authentication
-@app.route('/admin')  # Modified route here
+
+
+@app.route('/admin')
 def admin_dashboard():
-    # Check if the user is logged in
     if 'logged_in' in session and session['logged_in'] and 'username' in session:
-        # Display the admin dashboard
         return render_template('admin.html', username=session['username'])
     else:
         return redirect(url_for('login'))
-    
-
 
 # Logout route - clears the session and redirects to the login page
+
+
 @app.route('/logout')
 def logout():
     session.clear()
     return render_template('logout.html')
 
 # Add article route - allows the admin to add a news article
+
+
 @app.route('/add_article', methods=['POST'])
 def add_article():
     if 'logged_in' in session and session['logged_in'] and 'username' in session:
-        title = request.form['title']
-        date = request.form['date']
-        content = request.form['content']
-        image_url = request.form['image_url']
-        call_to_action_button = request.form['call_to_action_button']
-        call_to_action_link = request.form['call_to_action_link']
+        article = NewsArticle(
+            title=request.form['title'],
+            date=request.form['date'],
+            content= request.form['content'],
+            image_url=request.form['image_url'],
+            call_to_action_button=request.form['call_to_action_button'],
+            call_to_action_link=request.form['call_to_action_link']
+        )
 
-        conn = sqlite3.connect('news.db')
-        c = conn.cursor()
-        c.execute('INSERT INTO news_articles (title, date, content, image_url, call_to_action_button, call_to_action_link) VALUES (?, ?, ?, ?, ?, ?)', (title, date, content, image_url, call_to_action_button, call_to_action_link))
-        conn.commit()
-        conn.close()
+        db.session.add(article)
+        db.session.commit()
 
-        # Redirect to the article preview page
+        return redirect(url_for('home'))
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/edit_article/<int:article_id>', methods=['GET', 'POST'])
+def edit_article(article_id):
+    if 'logged_in' in session and session['logged_in'] and 'username' in session:
+        if request.method == 'GET':
+            article = NewsArticle.query.get(article_id)
+            print(article.title)
+            if article:
+                return render_template('edit_article.html', article=article)
+            else:
+                return "Article not found"        
+        elif request.method == 'POST':
+            article = NewsArticle.query.get(article_id)
+            article.title = request.form['title']
+            article.date = request.form['date']
+            article.content = request.form['content']
+            article.image_url = request.form['image_url']
+            article.call_to_action_button = request.form['call_to_action_button']
+            article.call_to_action_link = request.form['call_to_action_link']
+
+            db.session.commit()
+
+            return redirect(url_for('home'))
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/delete_article/<int:article_id>', methods=['POST'])
+def delete_article(article_id):
+    if 'logged_in' in session and session['logged_in'] and 'username' in session:
+        db.session.delete(NewsArticle.query.get(article_id))
+        db.session.commit()
+
         return redirect(url_for('home'))
     else:
         return redirect(url_for('login'))
 
 
-if __name__ == '__main__':
-    initialize_database()
-    app.run(debug=True)
 
+@app.route('/test')
+def test():
+    return render_template('test.html')
+
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(host='0.0.0.0', port=80, debug=True)

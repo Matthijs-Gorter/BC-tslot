@@ -5,6 +5,10 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+b, strong {
+  font-weight: 900;
+}
+
 header {
   width: 100vw;
   height: 40rem;
@@ -198,16 +202,30 @@ main button:hover {
   color: #ff7d32;
   background-color: white;
 }
+main .button-container {
+  display: flex;
+  place-content: space-between;
+}
+main .btn-danger {
+  background-color: red;
+  border: 2px solid red;
+}
+main .btn-danger:hover {
+  color: red;
+  background-color: white;
+}
+main .btn-neutral {
+  background-color: #343399;
+  border: 2px solid #343399;
+}
+main .btn-neutral:hover {
+  color: #343399;
+  background-color: white;
+}
 main #logout {
   position: fixed;
   top: 4rem;
   right: 2rem;
-  background-color: red;
-  border: 2px solid red;
-}
-main #logout:hover {
-  color: red;
-  background-color: white;
 }
 main #news {
   padding: 0;
@@ -297,8 +315,7 @@ main form label {
   position: relative;
   color: #343399;
 }
-main form input,
-main form textarea {
+main form input, main form textarea {
   display: block;
   width: 100%;
   min-width: 20rem;
@@ -339,23 +356,39 @@ main form textarea {
   margin: 0 auto;
 }
 
-#admin {
+#admin, #edit {
   display: grid;
   grid-template-columns: 1fr min-content;
   gap: 2rem;
 }
 #admin form input,
-#admin form textarea {
-  margin-bottom: -1rem;
+#admin form textarea, #edit form input,
+#edit form textarea {
+  margin-bottom: 1rem;
 }
-#admin form .btn {
+#admin form .btn, #edit form .btn {
   width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
-#admin .card_detail {
+#admin form .container, #edit form .container {
+  position: relative;
+}
+#admin form textarea, #edit form textarea {
+  padding-right: 2rem;
+}
+#admin form .content-toolbar, #edit form .content-toolbar {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 1.5rem;
+  right: 1rem;
+}
+#admin .card_detail, #edit .card_detail {
   background-color: #343399;
   border-radius: 1rem;
   overflow: hidden;
 }
-#admin .card_detail #news-cards {
+#admin .card_detail #news-cards, #edit .card_detail #news-cards {
   padding: 2rem;
 }/*# sourceMappingURL=style.css.map */
