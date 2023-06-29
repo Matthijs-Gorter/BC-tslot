@@ -11,7 +11,8 @@ body {
 	font-family: $font-primary;
 }
 
-b, strong {
+b,
+strong {
 	font-weight: 900;
 }
 
@@ -182,6 +183,22 @@ nav {
 	}
 }
 
+body:has(section.center) {
+	height: 100vh;
+	display: grid;
+	grid-template-rows: min-content 1fr;
+}
+
+main:has(section.center) {
+	display: grid;
+	place-items: center;
+	* {
+		text-align: center;
+		margin: 0;
+		box-sizing: border-box;
+	}
+}
+
 main {
 	p {
 		line-height: 1.4;
@@ -222,7 +239,7 @@ main {
 	}
 	.button-container {
 		display: flex;
-		place-content:space-between;
+		place-content: space-between;
 	}
 	.btn-danger {
 		background-color: red;
@@ -240,13 +257,13 @@ main {
 		color: $primary;
 		background-color: white;
 	}
-	
+
 	#logout {
 		position: fixed;
 		top: 4rem;
 		right: 2rem;
 	}
-	
+
 	#news {
 		padding: 0;
 		overflow-x: scroll;
@@ -337,7 +354,8 @@ main {
 			position: relative;
 			color: $primary;
 		}
-		input, textarea {
+		input,
+		textarea {
 			display: block;
 			width: 100%;
 			min-width: 20rem;
@@ -363,7 +381,7 @@ main {
 	font-size: small;
 }
 
-#login {
+body:has(#login) {
 	display: grid;
 	height: 100vh;
 	grid-template-rows: min-content 1fr;
@@ -382,7 +400,8 @@ main {
 	}
 }
 
-#admin, #edit {
+#admin,
+#edit {
 	display: grid;
 	grid-template-columns: 1fr min-content;
 	gap: 2rem;
@@ -412,7 +431,7 @@ main {
 		}
 	}
 	.card_detail {
-		background-color:$primary;
+		background-color: $primary;
 		border-radius: 1rem;
 		overflow: hidden;
 		#news-cards {

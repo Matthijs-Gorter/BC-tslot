@@ -5,7 +5,8 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-b, strong {
+b,
+strong {
   font-weight: 900;
 }
 
@@ -165,6 +166,22 @@ nav .search button i {
   height: 0;
 }
 
+body:has(section.center) {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: min-content 1fr;
+}
+
+main:has(section.center) {
+  display: grid;
+  place-items: center;
+}
+main:has(section.center) * {
+  text-align: center;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 main p {
   line-height: 1.4;
   color: rgba(0, 0, 0, 0.5843137255);
@@ -315,7 +332,8 @@ main form label {
   position: relative;
   color: #343399;
 }
-main form input, main form textarea {
+main form input,
+main form textarea {
   display: block;
   width: 100%;
   min-width: 20rem;
@@ -337,58 +355,66 @@ main form input, main form textarea {
   font-size: small;
 }
 
-#login {
+body:has(#login) {
   display: grid;
   height: 100vh;
   grid-template-rows: min-content 1fr;
 }
-#login main {
+body:has(#login) main {
   display: grid;
   place-items: center;
   margin: 0;
 }
-#login h2 {
+body:has(#login) h2 {
   text-align: center;
   margin-bottom: 3rem;
 }
-#login .btn {
+body:has(#login) .btn {
   margin-top: 3rem;
   margin: 0 auto;
 }
 
-#admin, #edit {
+#admin,
+#edit {
   display: grid;
   grid-template-columns: 1fr min-content;
   gap: 2rem;
 }
 #admin form input,
-#admin form textarea, #edit form input,
+#admin form textarea,
+#edit form input,
 #edit form textarea {
   margin-bottom: 1rem;
 }
-#admin form .btn, #edit form .btn {
+#admin form .btn,
+#edit form .btn {
   width: 100%;
   margin-top: 1rem;
   margin-bottom: 0;
 }
-#admin form .container, #edit form .container {
+#admin form .container,
+#edit form .container {
   position: relative;
 }
-#admin form textarea, #edit form textarea {
+#admin form textarea,
+#edit form textarea {
   padding-right: 2rem;
 }
-#admin form .content-toolbar, #edit form .content-toolbar {
+#admin form .content-toolbar,
+#edit form .content-toolbar {
   position: absolute;
   display: flex;
   flex-direction: column;
   top: 1.5rem;
   right: 1rem;
 }
-#admin .card_detail, #edit .card_detail {
+#admin .card_detail,
+#edit .card_detail {
   background-color: #343399;
   border-radius: 1rem;
   overflow: hidden;
 }
-#admin .card_detail #news-cards, #edit .card_detail #news-cards {
+#admin .card_detail #news-cards,
+#edit .card_detail #news-cards {
   padding: 2rem;
 }/*# sourceMappingURL=style.css.map */
